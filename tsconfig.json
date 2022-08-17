@@ -14,13 +14,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "noUncheckedIndexedAccess": true,
-    "baseUrl": "src", // This must be specified if "paths" is.
-    "paths": {
-      "@styles/*": ["styles/*"],
-      "@utils/*": ["utils/*"],
-      "@components/*": ["components/*"]
-    }
+    "noUncheckedIndexedAccess": true
   },
   "include": [
     "next-env.d.ts",
