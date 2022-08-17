@@ -2,7 +2,7 @@ import { Box, Grid, Input, Slider, Typography } from '@mui/material';
 import useStore from '../utils/store';
 
 const SizeSlider = () => {
-  const ARRAY_SIZE_MAX = 200;
+  const ARRAY_SIZE_MAX = 500;
   const ARRAY_SIZE_MIN = 10;
   const ARRAY_SIZE_STEP = 10;
 
@@ -44,7 +44,6 @@ const SizeSlider = () => {
             value={typeof size === 'number' ? size : 0}
             onChange={handleSliderSize}
             disabled={false}
-            marks
             step={ARRAY_SIZE_STEP}
             min={ARRAY_SIZE_MIN}
             max={ARRAY_SIZE_MAX}

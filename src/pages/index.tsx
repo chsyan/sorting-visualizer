@@ -22,13 +22,13 @@ const Home: NextPage = () => {
       </Head>
       <Box sx={{ flexGrow: 1 }} >
         <Container maxWidth={false} style={{ height: `calc(100vh - ${appBarHeight}px)` }}>
-          <Stack direction="row" alignItems="flex-end" justifyContent='space-between' style={{ height: '99%' }}>
+          <Stack direction="row" display="flex" justifyContent="center" alignItems="flex-end" style={{ height: '99%' }}>
             {
               values.map((value, index) => {
-                const percentHeight = 95 * value / maxValue;
-                const percentWidth = 80 / values.length;
+                const height = 95 * value / maxValue;
+                const width = 100 / values.length;
                 return (
-                  <div key={index} style={{ width: `${percentWidth}%`, height: `${percentHeight}%`, backgroundColor: 'white' }} />
+                  <div key={index} style={{ width: `${width}%`, height: `${height}%`, backgroundColor: 'white' }} />
                 )
               })
             }
