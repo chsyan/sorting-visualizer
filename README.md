@@ -1,5 +1,5 @@
 # Sorting Visualizer
-Visualizations of different sorting algorithms and is hosted at https://sort.chsyan.com.
+Visualizations of different sorting algorithms and is hosted at https://sort.chsyan.com. Inspired by [Sound of Sorting](https://panthema.net/2013/sound-of-sorting/), just without the sound!
 There is an older version of this project at https://github.com/chsyan/comparison-sorting-visualizer/.
 
 ## Algorithms
