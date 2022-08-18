@@ -1,4 +1,4 @@
-import { AppBar, Box, ButtonGroup, Stack, Toolbar } from "@mui/material";
+import { AppBar, Box, ButtonGroup, Container, Stack, Toolbar } from "@mui/material";
 import type { NextPage } from "next";
 import Head from "next/head";
 import AlgorithmSelector from "../components/algorithm-selector";
@@ -29,7 +29,11 @@ const Home: NextPage = () => {
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
-      <Bars />
+      <Box sx={{ flexGrow: 1 }} >
+        <Container maxWidth={false} style={{ height: `calc(100vh - ${appBarHeight}px)` }}>
+          <Bars />
+        </Container>
+      </Box>
       <AppBar position="static" style={{ minHeight: `${appBarHeight}px`, top: 'auto', bottom: 0, alignContent: 'center' }}>
         <Toolbar style={{ minHeight: `${appBarHeight}px`, top: 'auto', bottom: 0, alignContent: 'center' }}>
           <Box style={{ width: '100%' }}>
