@@ -1,20 +1,21 @@
-import { Box, Grid, Input, Slider, Typography } from '@mui/material';
+import BarChartIcon from '@mui/icons-material/BarChart';
+import { Box, Grid, Input, Slider, Tooltip } from '@mui/material';
+import Zoom from '@mui/material/Zoom';
 import useStore from '../utils/store';
 
 const SizeSlider = () => {
-  const ARRAY_SIZE_MAX = 500;
-  const ARRAY_SIZE_MIN = 10;
-  const ARRAY_SIZE_STEP = 10;
-
+  const sizeMax = 500;
+  const sizeMin = 10;
+  const sizeStep = 10;
   const size = useStore(state => state.size);
 
-  const handleSliderSize = async (_event: Event, size: number | number[]) => {
+  const handleSliderSize = (_event: Event, size: number | number[]) => {
     if (size != useStore.getState().size) {
       useStore.getState().setSize(size as number);
     }
   };
 
-  const handleInputSize = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputSize = (event: React.ChangeEvent<HTMLInputElement>) => {
     const size = event.target.value === '' ? 0 : Number(event.target.value);
     if (size != useStore.getState().size) {
       useStore.getState().setSize(size as number);
@@ -22,21 +23,20 @@ const SizeSlider = () => {
   };
 
   const handleBlurSize = () => {
-    if (size < ARRAY_SIZE_MIN) {
-      useStore.getState().setSize(ARRAY_SIZE_MIN as number);
-    } else if (size > ARRAY_SIZE_MAX) {
-      useStore.getState().setSize(ARRAY_SIZE_MAX as number);
+    if (size < sizeMin) {
+      useStore.getState().setSize(sizeMin as number);
+    } else if (size > sizeMax) {
+      useStore.getState().setSize(sizeMax as number);
     }
   };
 
   return (
-    <Box sx={{ width: 250 }}>
-      <Typography id="input-slider" gutterBottom>
-        Array Size
-      </Typography>
-      <Grid container spacing={2} alignItems="flex-start" justifyContent="center">
-        <Grid item xs={2}>
-          <span className="material-icons" >bar_chart</span>
+    <Box sx={{ width: 200 }}>
+      <Grid container spacing={2} alignItems="center">
+        <Grid item xs={1.75}>
+          <Tooltip title="Array Size" arrow TransitionComponent={Zoom} followCursor>
+            <BarChartIcon />
+          </Tooltip>
         </Grid>
         <Grid item xs>
           <Slider
@@ -44,9 +44,9 @@ const SizeSlider = () => {
             value={typeof size === 'number' ? size : 0}
             onChange={handleSliderSize}
             disabled={false}
-            step={ARRAY_SIZE_STEP}
-            min={ARRAY_SIZE_MIN}
-            max={ARRAY_SIZE_MAX}
+            step={sizeStep}
+            min={sizeMin}
+            max={sizeMax}
             aria-labelledby="input-slider"
           />
         </Grid>
@@ -58,16 +58,16 @@ const SizeSlider = () => {
             onBlur={handleBlurSize}
             disabled={false}
             inputProps={{
-              step: ARRAY_SIZE_STEP,
-              min: ARRAY_SIZE_MIN,
-              max: ARRAY_SIZE_MAX,
+              step: sizeStep,
+              min: sizeMin,
+              max: sizeMax,
               type: 'number',
               'aria-labelledby': 'input-slider',
             }}
           />
         </Grid>
       </Grid>
-    </Box>
+    </Box >
   );
 };
 
