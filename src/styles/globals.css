@@ -1,8 +1,9 @@
 :root {
-  --appBarHeightXs: 300px;
-  --appBarHeightSm: 200px;
-  --appBarHeightMd: 90px;
-  --appBarHeightLg: 90px;
+  --appBarHeightXs: 268px;
+  --appBarHeightXsm: 268px;
+  --appBarHeightSm: 192px;
+  --appBarHeightMd: 128px;
+  --appBarHeightLg: 64px;
 }
 
 html,
@@ -29,6 +30,16 @@ a {
 }
 
 @media screen and (min-width: 480px) {
+  .bars {
+    height: calc(100vh - var(--appBarHeightXsm));
+  }
+
+  .toolbar {
+    min-height: var(--appBarHeightXsm);
+  }
+}
+
+@media screen and (min-width: 600px) {
   .bars {
     height: calc(100vh - var(--appBarHeightSm));
   }

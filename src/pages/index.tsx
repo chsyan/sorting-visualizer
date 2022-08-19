@@ -39,12 +39,11 @@ const Home: NextPage = () => {
             display="flex"
             alignItems="center"
             container
-            justifyContent={{ xs: "center", md: "inherit" }}
             rowSpacing={2}
             columnSpacing={4}
-            columns={{ xs: 1, sm: 4, md: 4, lg: 17 }}
+            columns={{ xs: 5, xsm: 5, sm: 9.5, md: 13.5, lg: 21.5 }}
           >
-            <Grid2 xs>
+            <Grid2 xs={4.5}>
               <ButtonGroup>
                 <SkipPreviousButton />
                 <PlayPauseButton />
@@ -52,16 +51,16 @@ const Home: NextPage = () => {
                 <SkipNextButton />
               </ButtonGroup>
             </Grid2>
-            <Grid2 xs={4}>
+            <Grid2 xs={5}>
               <ProgressSlider />
             </Grid2>
-            <Grid2 xs={3}>
+            <Grid2 xs={4}>
               <DelaySlider />
             </Grid2>
-            <Grid2 xs={3}>
+            <Grid2 xs={4}>
               <SizeSlider />
             </Grid2>
-            <Grid2 xs>
+            <Grid2 xs={4}>
               <AlgorithmSelector />
             </Grid2>
           </Grid2>

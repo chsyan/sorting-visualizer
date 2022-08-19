@@ -1,12 +1,41 @@
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
 import { Box, IconButton, LinearProgress, Slider, Tooltip, Zoom } from "@mui/material";
 import Typography from '@mui/material/Typography';
+import create from "zustand";
 import { sort } from '../utils/array';
 import useStore from "../utils/store";
 
+interface State {
+  isPointer: boolean,
+  isDown: boolean,
+  isProgressSlider: boolean,
+  setIsPointer: (isPointer: boolean) => void,
+  setIsDown: (isDown: boolean) => void,
+}
+
+const processIsProgressSlider = (isPointer: boolean, isDown: boolean): boolean => {
+  return isPointer || isDown;
+}
+
+const useLocalStore = create<State>()((set, get) => ({
+  isPointer: false,
+  isDown: false,
+  isProgressSlider: false,
+  setIsPointer: (isPointer: boolean) => {
+    const isProgressSlider = processIsProgressSlider(isPointer, get().isDown);
+    set({ isPointer: isPointer, isProgressSlider: isProgressSlider });
+    console.log(isPointer, get().isDown);
+  },
+  setIsDown: (isDown: boolean) => {
+    const isProgressSlider = processIsProgressSlider(get().isPointer, isDown);
+    set({ isDown: isDown, isProgressSlider: isProgressSlider });
+    console.log(get().isPointer, isDown);
+  },
+}));
+
 const ProgressSlider = () => {
 
-  const isProgressSlider = useStore(state => state.isProgressSlider);
+  const isProgressSlider = useLocalStore(state => state.isProgressSlider);
   const animationIndex = useStore(state => state.animationIndex);
   const animation = useStore(state => state.animation);
 
@@ -30,39 +59,38 @@ const ProgressSlider = () => {
     });
   };
 
-  const handleClickFalse = () => {
-    useStore.setState({
-      isProgressSlider: false
-    });
+  const handlePointerEnter = () => {
+    useLocalStore.getState().setIsPointer(true);
   }
 
-  const handleClickTrue = () => {
-    useStore.setState({
-      isProgressSlider: true
-    });
+  const handlePointerLeave = () => {
+    useLocalStore.getState().setIsPointer(false);
   }
 
-  const handleClickToggle = () => {
-    useStore.setState({
-      isProgressSlider: !useStore.getState().isProgressSlider
-    });
+  const handleMouseDown = () => {
+    useLocalStore.getState().setIsDown(true);
   }
+
+  const handleMouseUp = () => {
+    useLocalStore.getState().setIsDown(false);
+  }
+
 
   return (
     <Box width={250} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <Tooltip title="Progress" arrow TransitionComponent={Zoom} followCursor>
-        <IconButton onClick={handleClickToggle}>
-          <HourglassEmptyIcon />
-        </IconButton>
+        <HourglassEmptyIcon />
       </Tooltip>
       <Box
-        sx={{ width: '100%', mr: 2 }}
-        onPointerEnter={handleClickTrue}
-        onPointerLeave={handleClickFalse}
+        sx={{ width: '100%', ml: 1, mr: 2 }}
+        onPointerEnter={handlePointerEnter}
+        onPointerLeave={handlePointerLeave}
+        onMouseDown={handleMouseDown}
       >
         <Slider
           size="small"
           onChange={handleChange}
+          onChangeCommitted={handleMouseUp}
           defaultValue={0}
           value={animationIndex}
           min={0}
