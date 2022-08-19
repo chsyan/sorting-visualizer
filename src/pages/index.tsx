@@ -37,7 +37,6 @@ const Home: NextPage = () => {
         <AppBar position="static">
           <Toolbar className="toolbar" style={{ top: 'auto', bottom: 0 }}>
             <Grid2
-              display="flex"
               alignItems="center"
               container
               rowSpacing={2}
