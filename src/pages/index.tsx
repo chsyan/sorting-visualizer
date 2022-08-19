@@ -30,42 +30,44 @@ const Home: NextPage = () => {
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
-      <Container maxWidth={false} className="bars" >
-        <Bars />
-      </Container>
-      <AppBar position="static">
-        <Toolbar className="toolbar" style={{ top: 'auto', bottom: 0 }}>
-          <Grid2
-            display="flex"
-            alignItems="center"
-            container
-            rowSpacing={2}
-            columnSpacing={4}
-            columns={{ xs: 5, xsm: 5, sm: 9.5, md: 13.5, lg: 21.5 }}
-          >
-            <Grid2 xs={4.5}>
-              <ButtonGroup>
-                <SkipPreviousButton />
-                <PlayPauseButton />
-                <NewArrayButton />
-                <SkipNextButton />
-              </ButtonGroup>
+      <Box style={{ height: '100vh' }}>
+        <Container maxWidth={false} className="bars" >
+          <Bars />
+        </Container>
+        <AppBar position="static">
+          <Toolbar className="toolbar" style={{ top: 'auto', bottom: 0 }}>
+            <Grid2
+              display="flex"
+              alignItems="center"
+              container
+              rowSpacing={2}
+              columnSpacing={4}
+              columns={{ xs: 5, xsm: 5, sm: 9.5, md: 13.5, lg: 21.5 }}
+            >
+              <Grid2 xs={4.5}>
+                <ButtonGroup>
+                  <SkipPreviousButton />
+                  <PlayPauseButton />
+                  <NewArrayButton />
+                  <SkipNextButton />
+                </ButtonGroup>
+              </Grid2>
+              <Grid2 xs={5}>
+                <ProgressSlider />
+              </Grid2>
+              <Grid2 xs={4}>
+                <DelaySlider />
+              </Grid2>
+              <Grid2 xs={4}>
+                <SizeSlider />
+              </Grid2>
+              <Grid2 xs={4}>
+                <AlgorithmSelector />
+              </Grid2>
             </Grid2>
-            <Grid2 xs={5}>
-              <ProgressSlider />
-            </Grid2>
-            <Grid2 xs={4}>
-              <DelaySlider />
-            </Grid2>
-            <Grid2 xs={4}>
-              <SizeSlider />
-            </Grid2>
-            <Grid2 xs={4}>
-              <AlgorithmSelector />
-            </Grid2>
-          </Grid2>
-        </Toolbar>
-      </AppBar>
+          </Toolbar>
+        </AppBar>
+      </Box>
     </>
   );
 };
