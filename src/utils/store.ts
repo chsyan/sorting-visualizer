@@ -14,6 +14,7 @@ interface State {
   isSorted: boolean;
   delay: number;
   algorithm: string;
+  isProgressSlider: boolean;
 }
 
 const initialSize = 100;
@@ -51,16 +52,21 @@ const useStore = create<State>()((set, get) => ({
   delay: initialDelay,
   algorithm: "quick-hoare",
   setAnimationIndex: (index: number) => {
-    if (index < 0 || index >= get().animation.length) {
-      index = get().animation.length - 1;
+    const animation = get().animation;
+    if (index < 0) {
+      index = animation.length - 1;
+    }
+    set({ animationIndex: index });
+    if (index > animation.length - 1) {
+      index = animation.length - 1;
     }
     const frame = get().animation[index] as [number[], number[]];
-    useStore.setState({
-      animationIndex: index,
+    set({
       array: frame[0],
       states: frame[1],
     });
   },
+  isProgressSlider: false,
 }));
 
 export default useStore;

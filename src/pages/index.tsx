@@ -1,4 +1,4 @@
-import { AppBar, Box, ButtonGroup, Container, Stack, Toolbar } from "@mui/material";
+import { AppBar, Box, ButtonGroup, Container, Divider, Stack, Toolbar } from "@mui/material";
 import type { NextPage } from "next";
 import Head from "next/head";
 import AlgorithmSelector from "../components/algorithm-selector";
@@ -10,6 +10,7 @@ import SizeSlider from "../components/size-slider";
 import SkipNextButton from "../components/skip-next-button";
 import SkipPreviousButton from "../components/skip-previous-button";
 import dynamic from 'next/dynamic'
+import Grid2 from "@mui/material/Unstable_Grid2";
 
 const Home: NextPage = () => {
   const appBarHeight = 64;
@@ -29,27 +30,41 @@ const Home: NextPage = () => {
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
-      <Box sx={{ flexGrow: 1 }} >
-        <Container maxWidth={false} style={{ height: `calc(100vh - ${appBarHeight}px)` }}>
-          <Bars />
-        </Container>
-      </Box>
-      <AppBar position="static" style={{ minHeight: `${appBarHeight}px`, top: 'auto', bottom: 0, alignContent: 'center' }}>
-        <Toolbar style={{ minHeight: `${appBarHeight}px`, top: 'auto', bottom: 0, alignContent: 'center' }}>
-          <Box style={{ width: '100%' }}>
-            <Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={2} >
+      <Container maxWidth={false} className="bars" >
+        <Bars />
+      </Container>
+      <AppBar position="static">
+        <Toolbar className="toolbar" style={{ top: 'auto', bottom: 0 }}>
+          <Grid2
+            display="flex"
+            alignItems="center"
+            container
+            justifyContent={{ xs: "center", md: "inherit" }}
+            rowSpacing={2}
+            columnSpacing={4}
+            columns={{ xs: 1, sm: 4, md: 4, lg: 17 }}
+          >
+            <Grid2 xs>
               <ButtonGroup>
                 <SkipPreviousButton />
                 <PlayPauseButton />
+                <NewArrayButton />
                 <SkipNextButton />
               </ButtonGroup>
-              <NewArrayButton />
+            </Grid2>
+            <Grid2 xs={4}>
               <ProgressSlider />
+            </Grid2>
+            <Grid2 xs={3}>
               <DelaySlider />
+            </Grid2>
+            <Grid2 xs={3}>
               <SizeSlider />
+            </Grid2>
+            <Grid2 xs>
               <AlgorithmSelector />
-            </Stack>
-          </Box>
+            </Grid2>
+          </Grid2>
         </Toolbar>
       </AppBar>
     </>

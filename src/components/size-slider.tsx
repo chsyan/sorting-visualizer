@@ -1,73 +1,50 @@
 import BarChartIcon from '@mui/icons-material/BarChart';
-import { Box, Grid, Input, Slider, Tooltip } from '@mui/material';
+import { Box, Slider, Tooltip, Typography } from '@mui/material';
 import Zoom from '@mui/material/Zoom';
 import useStore from '../utils/store';
 
 const SizeSlider = () => {
   const sizeMax = 500;
-  const sizeMin = 10;
+  const sizeMin = 50;
   const sizeStep = 10;
   const size = useStore(state => state.size);
+  const isAnimating = useStore(state => state.isAnimating);
 
   const handleSliderSize = (_event: Event, size: number | number[]) => {
-    if (size != useStore.getState().size) {
-      useStore.getState().setSize(size as number);
+    if (typeof size === 'number' && size !== useStore.getState().size) {
+      useStore.getState().setSize(size);
     }
   };
 
-  const handleInputSize = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const size = event.target.value === '' ? 0 : Number(event.target.value);
-    if (size != useStore.getState().size) {
-      useStore.getState().setSize(size as number);
-    }
-  };
-
-  const handleBlurSize = () => {
-    if (size < sizeMin) {
-      useStore.getState().setSize(sizeMin as number);
-    } else if (size > sizeMax) {
-      useStore.getState().setSize(sizeMax as number);
-    }
-  };
+  const labelFormat = (value: number) => {
+    return `${value} bars`;
+  }
 
   return (
-    <Box sx={{ width: 200 }}>
-      <Grid container spacing={2} alignItems="center">
-        <Grid item xs={1.75}>
-          <Tooltip title="Array Size" arrow TransitionComponent={Zoom} followCursor>
-            <BarChartIcon />
-          </Tooltip>
-        </Grid>
-        <Grid item xs>
+    <>
+      <Box width={200} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <Tooltip title="Array Size" arrow TransitionComponent={Zoom} followCursor>
+          <BarChartIcon />
+        </Tooltip>
+        <Box sx={{ width: '100%', ml: 2, mr: 2, paddingTop: 1 }}>
           <Slider
             size="small"
             value={typeof size === 'number' ? size : 0}
             onChange={handleSliderSize}
-            disabled={false}
+            disabled={isAnimating}
             step={sizeStep}
             min={sizeMin}
             max={sizeMax}
             aria-labelledby="input-slider"
           />
-        </Grid>
-        <Grid item xs={3.5}>
-          <Input
-            value={size}
-            size="small"
-            onChange={handleInputSize}
-            onBlur={handleBlurSize}
-            disabled={false}
-            inputProps={{
-              step: sizeStep,
-              min: sizeMin,
-              max: sizeMax,
-              type: 'number',
-              'aria-labelledby': 'input-slider',
-            }}
-          />
-        </Grid>
-      </Grid>
-    </Box >
+        </Box>
+        <Box sx={{ minWidth: 55 }}>
+          <Typography variant="body2" color="text.secondary">
+            {labelFormat(size)}
+          </Typography>
+        </Box>
+      </Box>
+    </>
   );
 };
 

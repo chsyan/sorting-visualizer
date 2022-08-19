@@ -12,13 +12,13 @@ const AlgorithmSelector = () => {
   };
 
   return (
-    <FormControl disabled={isAnimating} sx={{ minWidth: '120px' }} size="small">
-      <InputLabel id="demo-simple-select-label">Sorting Algorithm</InputLabel>
+    <FormControl disabled={isAnimating} sx={{ minWidth: '200px' }} size="small">
+      <InputLabel id="algorithm-select-label">Algorithm</InputLabel>
       <Select
-        labelId="demo-simple-select-label"
-        id="demo-simple-select"
+        labelId="algorithm-select-label"
+        id="algorithm-simple-select"
         value={algorithm}
-        label="Sorting Algorithm"
+        label="Algorithm"
         onChange={handleAlgorithm}
       >
         <MenuItem value={'quick-hoare'}>Quick Sort (Hoare)</MenuItem>

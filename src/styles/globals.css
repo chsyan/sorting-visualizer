@@ -1,9 +1,14 @@
+:root {
+  --appBarHeightXs: 300px;
+  --appBarHeightSm: 200px;
+  --appBarHeightMd: 90px;
+  --appBarHeightLg: 90px;
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 a {
@@ -13,4 +18,42 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.bars {
+  height: calc(100vh - var(--appBarHeightXs));
+}
+
+.toolbar {
+  min-height: var(--appBarHeightXs);
+}
+
+@media screen and (min-width: 480px) {
+  .bars {
+    height: calc(100vh - var(--appBarHeightSm));
+  }
+
+  .toolbar {
+    min-height: var(--appBarHeightSm);
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .bars {
+    height: calc(100vh - var(--appBarHeightMd));
+  }
+
+  .toolbar {
+    min-height: var(--appBarHeightMd);
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .bars {
+    height: calc(100vh - var(--appBarHeightLg));
+  }
+
+  .toolbar {
+    min-height: var(--appBarHeightLg);
+  }
 }

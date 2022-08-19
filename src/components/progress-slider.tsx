@@ -1,49 +1,90 @@
-import { Box, Typography, Grid, Slider, Tooltip, Zoom } from "@mui/material";
-import useStore from "../utils/store";
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
+import { Box, IconButton, LinearProgress, Slider, Tooltip, Zoom } from "@mui/material";
+import Typography from '@mui/material/Typography';
+import { sort } from '../utils/array';
+import useStore from "../utils/store";
 
 const ProgressSlider = () => {
-  const animationIndex = useStore((state) => state.animationIndex);
+
+  const isProgressSlider = useStore(state => state.isProgressSlider);
+  const animationIndex = useStore(state => state.animationIndex);
   const animation = useStore(state => state.animation);
 
+  const animationPercentage = (index: number): number => {
+    return index === 0 ? 0 : index / (animation.length - 1) * 100;
+  }
+
+  const labelFormat = (index: number) => {
+    const percentRounded = Math.round(animationPercentage(index));
+    return `${percentRounded}%`;
+  }
+
   const handleChange = async (_event: Event, newValue: number | number[]) => {
-    if (newValue != useStore.getState().animationIndex) {
-      const newIndex = newValue as number;
-      const frame = useStore.getState().animation[newIndex];
-      if (frame !== undefined) {
-        useStore.setState({
-          array: frame[0],
-          states: frame[1],
-          animationIndex: newIndex,
-          isAnimating: false,
-        });
-      }
+    if (!useStore.getState().isSorted) {
+      sort();
     }
+    const newIndex = newValue as number;
+    useStore.getState().setAnimationIndex(newIndex);
+    useStore.setState({
+      isAnimating: false
+    });
   };
 
+  const handleClickFalse = () => {
+    useStore.setState({
+      isProgressSlider: false
+    });
+  }
+
+  const handleClickTrue = () => {
+    useStore.setState({
+      isProgressSlider: true
+    });
+  }
+
+  const handleClickToggle = () => {
+    useStore.setState({
+      isProgressSlider: !useStore.getState().isProgressSlider
+    });
+  }
+
   return (
-    <Box sx={{ width: 150 }}>
-      <Grid
-        container
-        spacing={2}
-        justifyContent="center"
+    <Box width={250} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <Tooltip title="Progress" arrow TransitionComponent={Zoom} followCursor>
+        <IconButton onClick={handleClickToggle}>
+          <HourglassEmptyIcon />
+        </IconButton>
+      </Tooltip>
+      <Box
+        sx={{ width: '100%', mr: 2 }}
+        onPointerEnter={handleClickTrue}
+        onPointerLeave={handleClickFalse}
       >
-        <Grid item xs={2}>
-          <Tooltip title="Progress" arrow TransitionComponent={Zoom} followCursor>
-            <HourglassEmptyIcon />
-          </Tooltip>
-        </Grid>
-        <Grid item xs>
-          <Slider
-            size="small"
-            onChange={handleChange}
-            value={animationIndex}
-            min={0}
-            max={animation.length - 1}
-            aria-labelledby="input-slider"
-          />
-        </Grid>
-      </Grid>
+        <Slider
+          size="small"
+          onChange={handleChange}
+          defaultValue={0}
+          value={animationIndex}
+          min={0}
+          max={animation.length - 1}
+          aria-labelledby="input-slider"
+          sx={{
+            display: `${isProgressSlider ? 'flex' : 'none'}`,
+          }}
+        />
+        <LinearProgress
+          variant="determinate"
+          value={animationPercentage(animationIndex)}
+          sx={{
+            display: `${isProgressSlider ? 'none' : 'flex'}`,
+          }}
+        />
+      </Box>
+      <Box sx={{ minWidth: 35 }}>
+        <Typography variant="body2" color="text.secondary">
+          {labelFormat(animationIndex)}
+        </Typography>
+      </Box>
     </Box>
   );
 };

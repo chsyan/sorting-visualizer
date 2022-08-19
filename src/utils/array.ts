@@ -1,3 +1,23 @@
+import bubbleSort from "./algorithms/bubble-sort";
+import quickSortWrapper from "./algorithms/quick-sort";
+import useStore from "./store";
+
+export const sort = () => {
+  const array = useStore.getState().array;
+  const states = useStore.getState().states;
+  const algorithm = useStore.getState().algorithm;
+  const animation = [[[...array], [...states]]] as [[number[], number[]]];
+  if (algorithm === "bubble") {
+    bubbleSort(array, states, animation);
+  } else if (algorithm === "quick-hoare") {
+    quickSortWrapper(array, states, animation);
+  } else if (algorithm === "quick-lomuto") {
+    quickSortWrapper(array, states, animation, false);
+  }
+  animation.push([array, states]);
+  useStore.setState({ isSorted: true });
+};
+
 export const accessArray = (
   array: number[],
   states: number[],

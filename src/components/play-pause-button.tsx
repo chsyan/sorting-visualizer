@@ -1,8 +1,7 @@
 import PauseIcon from '@mui/icons-material/Pause';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import { Button } from "@mui/material";
-import bubbleSort from "../utils/algorithms/bubble-sort";
-import quickSortWrapper from '../utils/algorithms/quick-sort';
+import { sort } from '../utils/array';
 import useStore from "../utils/store";
 import { asyncSetTimeout } from "../utils/utils";
 
@@ -32,22 +31,6 @@ const PlayPauseButton = () => {
     useStore.setState({
       isAnimating: false,
     });
-  }
-
-  const sort = () => {
-    const array = useStore.getState().array;
-    const states = useStore.getState().states;
-    const algorithm = useStore.getState().algorithm;
-    const animation = [[[...array], [...states]]] as [[number[], number[]]];
-    if (algorithm === 'bubble') {
-      bubbleSort(array, states, animation);
-    } else if (algorithm === 'quick-hoare') {
-      quickSortWrapper(array, states, animation);
-    } else if (algorithm === 'quick-lomuto') {
-      quickSortWrapper(array, states, animation, false);
-    }
-    animation.push([array, states]);
-    useStore.setState({ isSorted: true });
   }
 
   return (

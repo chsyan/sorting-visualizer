@@ -14,9 +14,9 @@ const Bars = () => {
           const width = 100 / array.length;
           let backgroundColor = 'white';
           if (states[index] === 1) {
-            backgroundColor = 'blue';
+            backgroundColor = '#DA0037';
           } else if (states[index] === 2) {
-            backgroundColor = 'red';
+            backgroundColor = '#DA0037';
           }
           return (
             <div key={index} style={{ width: `${width}%`, height: `${height}%`, backgroundColor: `${backgroundColor}` }} />
