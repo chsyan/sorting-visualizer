@@ -46,7 +46,8 @@ const Home: NextPage = () => {
       </Box>
       <Snackbar open={isAlertBogo} autoHideDuration={6000} onClose={handleClose} anchorOrigin={snackBarOrigin}>
         <Alert onClose={handleClose} severity="warning" sx={{ width: '100%' }}>
-          Bogo sort is not recommended for anything larger than 8 bars
+          Bogo sort is not recommended for anything larger than 8 bars.
+          Your browser will crash since animations are not optimized for memory.
         </Alert>
       </Snackbar>
     </>
