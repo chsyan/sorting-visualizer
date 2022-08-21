@@ -1,5 +1,5 @@
 import create from "zustand";
-import { randomArray } from "./array";
+import { randomArray, algorithms } from "./array";
 
 interface State {
   array: number[];
@@ -15,6 +15,7 @@ interface State {
   delay: number;
   algorithm: string;
   isProgressSlider: boolean;
+  isAlertBogo: boolean;
 }
 
 const initialSize = 100;
@@ -50,7 +51,7 @@ const useStore = create<State>()((set, get) => ({
   animationIndex: 0,
   isSorted: false,
   delay: initialDelay,
-  algorithm: "quick-hoare",
+  algorithm: algorithms[0] as string,
   setAnimationIndex: (index: number) => {
     const animation = get().animation;
     if (index < 0) {
@@ -67,6 +68,7 @@ const useStore = create<State>()((set, get) => ({
     });
   },
   isProgressSlider: false,
+  isAlertBogo: false,
 }));
 
 export default useStore;

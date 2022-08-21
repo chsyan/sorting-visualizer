@@ -1,5 +1,5 @@
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
-import { Box, IconButton, LinearProgress, Slider, Tooltip, Zoom } from "@mui/material";
+import { Box, LinearProgress, Slider, Tooltip, Zoom } from "@mui/material";
 import Typography from '@mui/material/Typography';
 import create from "zustand";
 import { sort } from '../utils/array';
@@ -24,12 +24,10 @@ const useLocalStore = create<State>()((set, get) => ({
   setIsPointer: (isPointer: boolean) => {
     const isProgressSlider = processIsProgressSlider(isPointer, get().isDown);
     set({ isPointer: isPointer, isProgressSlider: isProgressSlider });
-    console.log(isPointer, get().isDown);
   },
   setIsDown: (isDown: boolean) => {
     const isProgressSlider = processIsProgressSlider(get().isPointer, isDown);
     set({ isDown: isDown, isProgressSlider: isProgressSlider });
-    console.log(get().isPointer, isDown);
   },
 }));
 
@@ -40,7 +38,14 @@ const ProgressSlider = () => {
   const animation = useStore(state => state.animation);
 
   const animationPercentage = (index: number): number => {
-    return index === 0 ? 0 : index / (animation.length - 1) * 100;
+    const percent = index === 0 ? 0 : index / (animation.length - 1) * 100;
+    if (percent > 100) {
+      return 100;
+    }
+    if (percent < 0) {
+      return 0;
+    }
+    return percent;
   }
 
   const labelFormat = (index: number) => {

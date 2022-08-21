@@ -4,15 +4,21 @@ import Zoom from '@mui/material/Zoom';
 import useStore from '../utils/store';
 
 const SizeSlider = () => {
-  const sizeMax = 500;
-  const sizeMin = 50;
-  const sizeStep = 10;
+  const sizeMax = 300;
+  const sizeMin = 1;
+  const sizeStep = 1;
   const size = useStore(state => state.size);
   const isAnimating = useStore(state => state.isAnimating);
 
   const handleSliderSize = (_event: Event, size: number | number[]) => {
     if (typeof size === 'number' && size !== useStore.getState().size) {
       useStore.getState().setSize(size);
+    }
+
+    if (useStore.getState().algorithm === "Bogo Sort" && useStore.getState().size > 8) {
+      useStore.setState({
+        isAlertBogo: true,
+      })
     }
   };
 

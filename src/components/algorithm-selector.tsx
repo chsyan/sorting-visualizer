@@ -1,14 +1,21 @@
 import { Box, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material";
+import { algorithms } from "../utils/array";
 import useStore from "../utils/store";
 
 const AlgorithmSelector = () => {
   const isAnimating = useStore(state => state.isAnimating);
   const algorithm = useStore(state => state.algorithm);
   const handleAlgorithm = (event: SelectChangeEvent) => {
+    const algorithm = event.target.value as string;
     if (useStore.getState().isSorted) {
       useStore.getState().setSize(0);
     }
-    useStore.setState({ algorithm: event.target.value as string });
+    useStore.setState({ algorithm: algorithm });
+    if (algorithm === "Bogo Sort" && useStore.getState().size > 8) {
+      useStore.setState({
+        isAlertBogo: true,
+      })
+    }
   };
 
   return (
@@ -22,9 +29,14 @@ const AlgorithmSelector = () => {
           label="Algorithm"
           onChange={handleAlgorithm}
         >
-          <MenuItem value={'quick-hoare'}>Quick Sort (Hoare)</MenuItem>
-          <MenuItem value={'quick-lomuto'}>Quick Sort (Lomuto)</MenuItem>
-          <MenuItem value={'bubble'}>Bubble Sort</MenuItem>
+          {algorithms.map((algorithm) => (
+            <MenuItem
+              key={algorithm}
+              value={algorithm}
+            >
+              {algorithm}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
     </Box>

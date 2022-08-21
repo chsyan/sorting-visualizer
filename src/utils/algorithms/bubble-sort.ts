@@ -1,7 +1,6 @@
 // Optimized bubble sort
 
 import { accessArray, swap } from "../array";
-import useStore from "../store";
 
 // All elements after the last swap are sorted, no need to perform useless checks and swaps
 const bubbleSort = (
@@ -9,7 +8,6 @@ const bubbleSort = (
   states: number[],
   animation: [[number[], number[]]]
 ) => {
-  animation.push([array, states]);
   let n = array.length;
   do {
     let newn = 0;

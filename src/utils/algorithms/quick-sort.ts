@@ -59,13 +59,11 @@ const quickSortWrapper = (
     return i;
   };
 
-  animation.push([array, states]);
   if (isHoare) {
     quickSortHoare(0, array.length - 1);
   } else {
     quickSortLomuto(0, array.length - 1);
   }
-  useStore.setState({ animation: animation });
 };
 
 export default quickSortWrapper;

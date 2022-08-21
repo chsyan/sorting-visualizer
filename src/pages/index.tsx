@@ -1,22 +1,30 @@
-import { AppBar, Box, ButtonGroup, Container, Divider, Stack, Toolbar } from "@mui/material";
+import { Alert, Box, Container, Snackbar } from "@mui/material";
+import { SnackbarOrigin } from '@mui/material/Snackbar';
 import type { NextPage } from "next";
+import dynamic from 'next/dynamic';
 import Head from "next/head";
-import AlgorithmSelector from "../components/algorithm-selector";
-import DelaySlider from "../components/delay-slider";
-import NewArrayButton from "../components/new-array-button";
-import PlayPauseButton from "../components/play-pause-button";
-import ProgressSlider from "../components/progress-slider";
-import SizeSlider from "../components/size-slider";
-import SkipNextButton from "../components/skip-next-button";
-import SkipPreviousButton from "../components/skip-previous-button";
-import dynamic from 'next/dynamic'
-import Grid2 from "@mui/material/Unstable_Grid2";
+import BottomAppBar from "../components/bottom-app-bar";
+import useStore from "../utils/store";
+
+const snackBarOrigin: SnackbarOrigin = {
+  vertical: 'bottom',
+  horizontal: 'right',
+};
 
 const Home: NextPage = () => {
-  const appBarHeight = 64;
   const Bars = dynamic(() => import('../components/bars'), {
     ssr: false,
   })
+
+  const isAlertBogo = useStore(state => state.isAlertBogo);
+
+  const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    useStore.setState({ isAlertBogo: false });
+  };
 
   return (
     <>
@@ -34,39 +42,13 @@ const Home: NextPage = () => {
         <Container maxWidth={false} className="bars" >
           <Bars />
         </Container>
-        <AppBar position="static">
-          <Toolbar className="toolbar" style={{ top: 'auto', bottom: 0 }}>
-            <Grid2
-              alignItems="center"
-              container
-              rowSpacing={2}
-              columnSpacing={4}
-              columns={{ xs: 5, xsm: 5, sm: 9.5, md: 13.5, lg: 21.5 }}
-            >
-              <Grid2 xs={4.5}>
-                <ButtonGroup>
-                  <SkipPreviousButton />
-                  <PlayPauseButton />
-                  <NewArrayButton />
-                  <SkipNextButton />
-                </ButtonGroup>
-              </Grid2>
-              <Grid2 xs={5}>
-                <ProgressSlider />
-              </Grid2>
-              <Grid2 xs={4}>
-                <DelaySlider />
-              </Grid2>
-              <Grid2 xs={4}>
-                <SizeSlider />
-              </Grid2>
-              <Grid2 xs={4}>
-                <AlgorithmSelector />
-              </Grid2>
-            </Grid2>
-          </Toolbar>
-        </AppBar>
+        <BottomAppBar />
       </Box>
+      <Snackbar open={isAlertBogo} autoHideDuration={6000} onClose={handleClose} anchorOrigin={snackBarOrigin}>
+        <Alert onClose={handleClose} severity="warning" sx={{ width: '100%' }}>
+          Bogo sort is not recommended for anything larger than 8 bars
+        </Alert>
+      </Snackbar>
     </>
   );
 };
