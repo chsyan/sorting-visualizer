@@ -4,7 +4,7 @@ import Zoom from '@mui/material/Zoom';
 import useStore from '../utils/store';
 
 const SizeSlider = () => {
-  const sizeMax = 300;
+  const sizeMax = 500;
   const sizeMin = 1;
   const sizeStep = 1;
   const size = useStore(state => state.size);
