@@ -11,17 +11,25 @@ import mergeSort from "./algorithms/merge-sort";
 import heapSort from "./algorithms/heap-sort";
 import shellSort from "./algorithms/shell-sort";
 import cocktailShakerSort from "./algorithms/cocktail-shaker-sort";
+import gnomeSort from "./algorithms/gnome-sort";
+import oddEvenSort from "./algorithms/odd-even-sort";
+import combSort from "./algorithms/comb-sort";
+import cycleSort from "./algorithms/cycle-sort";
 
 export const algorithms = new Map([
   ["Quick Sort (Hoare Partition)", quickSortHoareWrapper],
   ["Quick Sort (Lomuto Partition)", quickSortLomutoWrapper],
   ["Bubble Sort", bubbleSort],
+  ["Comb Sort", combSort],
   ["Insertion Sort", insertionSort],
+  ["Shell Sort", shellSort],
   ["Selection Sort", selectionSort],
   ["Merge Sort", mergeSort],
   ["Heap Sort", heapSort],
-  ["Shell Sort", shellSort],
   ["Cocktail Shaker Sort", cocktailShakerSort],
+  ["Gnome Sort", gnomeSort],
+  ["Odd-Even Sort", oddEvenSort],
+  ["Cycle Sort", cycleSort],
   ["Bogo Sort", bogoSort],
   ['Bogo Sort ("Optimized")', bogoSortOptimized],
 ]);

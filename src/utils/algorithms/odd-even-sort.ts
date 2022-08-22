@@ -1,33 +1,28 @@
 import { accessArray, swap } from "../array";
 
-const cocktailShakerSort = (
+const oddEvenSort = (
   array: number[],
   states: number[],
   animation: [[number[], number[]]]
 ) => {
-  let start = 0;
-  let end = array.length - 1;
-  while (start < end) {
-    let newStart = end;
-    let newEnd = start;
-    for (let i = start; i <= end; i++) {
+  let sorted = false;
+  while (!sorted) {
+    sorted = true;
+    for (let i = 1; i < array.length - 1; i += 2) {
       if ((array[i] as number) > (array[i + 1] as number)) {
         swap(array, i, i + 1);
         accessArray([...array], [...states], animation, [i, i + 1], 2);
-        newEnd = i;
+        sorted = false;
       }
     }
-
-    end = newEnd - 1;
-    for (let i = end; i >= start; i--) {
+    for (let i = 0; i < array.length - 1; i += 2) {
       if ((array[i] as number) > (array[i + 1] as number)) {
         swap(array, i, i + 1);
         accessArray([...array], [...states], animation, [i, i + 1], 2);
-        newStart = i;
+        sorted = false;
       }
     }
-    start = newStart + 1;
   }
-};
+}
 
-export default cocktailShakerSort;
+export default oddEvenSort;
