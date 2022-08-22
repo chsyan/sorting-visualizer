@@ -7,6 +7,7 @@ import useStore from "./store";
 import { bogoSort, bogoSortOptimized } from "./algorithms/bogo-sort";
 import insertionSort from "./algorithms/insertion-sort";
 import selectionSort from "./algorithms/selection-sort";
+import mergeSort from "./algorithms/merge-sort";
 
 export const algorithms = new Map([
   ["Quick Sort (Hoare Partition)", quickSortHoareWrapper],
@@ -14,6 +15,7 @@ export const algorithms = new Map([
   ["Bubble Sort", bubbleSort],
   ["Insertion Sort", insertionSort],
   ["Selection Sort", selectionSort],
+  ["Merge Sort", mergeSort],
   ["Bogo Sort", bogoSort],
   ['Bogo Sort ("Optimized")', bogoSortOptimized],
 ]);
