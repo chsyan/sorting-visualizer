@@ -2,6 +2,11 @@ import { Box, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } fro
 import { algorithms } from "../utils/array";
 import useStore from "../utils/store";
 
+const algorithmNames: string[] = [];
+algorithms.forEach((_value, key) => {
+  algorithmNames.push(key);
+});
+
 const AlgorithmSelector = () => {
   const isAnimating = useStore(state => state.isAnimating);
   const algorithm = useStore(state => state.algorithm);
@@ -29,14 +34,16 @@ const AlgorithmSelector = () => {
           label="Algorithm"
           onChange={handleAlgorithm}
         >
-          {algorithms.map((algorithm) => (
-            <MenuItem
-              key={algorithm}
-              value={algorithm}
-            >
-              {algorithm}
-            </MenuItem>
-          ))}
+          {
+            algorithmNames.map((algorithm) => (
+              <MenuItem
+                key={algorithm}
+                value={algorithm}
+              >
+                {algorithm}
+              </MenuItem>
+            ))
+          }
         </Select>
       </FormControl>
     </Box>

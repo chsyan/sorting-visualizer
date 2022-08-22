@@ -1,11 +1,9 @@
 import { accessArray, swap } from "../array";
-import useStore from "../store";
 
-const quickSortWrapper = (
+export const quickSortHoareWrapper = (
   array: number[],
   states: number[],
-  animation: [[number[], number[]]],
-  isHoare = true
+  animation: [[number[], number[]]]
 ) => {
   const quickSortHoare = (lo: number, hi: number) => {
     if (lo < hi) {
@@ -36,6 +34,14 @@ const quickSortWrapper = (
     return 0;
   };
 
+  quickSortHoare(0, array.length - 1);
+};
+
+export const quickSortLomutoWrapper = (
+  array: number[],
+  states: number[],
+  animation: [[number[], number[]]]
+) => {
   const quickSortLomuto = (lo: number, hi: number) => {
     if (lo < hi) {
       const p = partitionLomuto(lo, hi);
@@ -59,11 +65,5 @@ const quickSortWrapper = (
     return i;
   };
 
-  if (isHoare) {
-    quickSortHoare(0, array.length - 1);
-  } else {
-    quickSortLomuto(0, array.length - 1);
-  }
+  quickSortLomuto(0, array.length - 1);
 };
-
-export default quickSortWrapper;

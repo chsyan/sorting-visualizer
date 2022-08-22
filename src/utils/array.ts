@@ -1,32 +1,30 @@
-import { bogoSort, bogoSortOptimized } from "./algorithms/bogo-sort";
 import bubbleSort from "./algorithms/bubble-sort";
-import quickSortWrapper from "./algorithms/quick-sort";
+import {
+  quickSortHoareWrapper,
+  quickSortLomutoWrapper,
+} from "./algorithms/quick-sort";
 import useStore from "./store";
+import { bogoSort, bogoSortOptimized } from "./algorithms/bogo-sort";
 
-export const algorithms = [
-  "Quick Sort (Hoare Partition)",
-  "Quick Sort (Lomuto Partition)",
-  "Bubble Sort",
-  "Bogo Sort",
-  'Bogo Sort ("Optimized")',
-];
+export const algorithms = new Map([
+  ["Quick Sort (Hoare Partition)", quickSortHoareWrapper],
+  ["Quick Sort (Lomuto Partition)", quickSortLomutoWrapper],
+  ["Bubble Sort", bubbleSort],
+  ["Bogo Sort", bogoSort],
+  ['Bogo Sort ("Optimized")', bogoSortOptimized],
+]);
 
 export const sort = () => {
   const array = useStore.getState().array;
   const states = useStore.getState().states;
   const algorithm = useStore.getState().algorithm;
   const animation = [[[...array], [...states]]] as [[number[], number[]]];
-  if (algorithm === algorithms[0]) {
-    quickSortWrapper(array, states, animation);
-  } else if (algorithm === algorithms[1]) {
-    quickSortWrapper(array, states, animation, false);
-  } else if (algorithm === algorithms[2]) {
-    bubbleSort(array, states, animation);
-  } else if (algorithm === algorithms[3]) {
-    bogoSort(array, states, animation);
-  } else if (algorithm === algorithms[4]) {
-    bogoSortOptimized(array, states, animation);
+
+  const sorter = algorithms.get(algorithm);
+  if (sorter) {
+    sorter(array, states, animation);
   }
+
   animation.push([array, states]);
   useStore.setState({
     animation: animation,

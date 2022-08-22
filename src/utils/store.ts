@@ -22,6 +22,7 @@ const initialSize = 100;
 const initialValues = randomArray(initialSize);
 const initialStates = new Array<number>(initialSize).fill(0);
 const initialDelay = 0;
+const initialAlgorithm = algorithms.entries().next().value[0];
 
 const useStore = create<State>()((set, get) => ({
   array: initialValues,
@@ -51,7 +52,7 @@ const useStore = create<State>()((set, get) => ({
   animationIndex: 0,
   isSorted: false,
   delay: initialDelay,
-  algorithm: algorithms[0] as string,
+  algorithm: initialAlgorithm,
   setAnimationIndex: (index: number) => {
     const animation = get().animation;
     if (index < 0) {
