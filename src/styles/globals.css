@@ -21,6 +21,10 @@ a {
   box-sizing: border-box;
 }
 
+.MuiLinearProgress-bar {
+  transition: none;
+}
+
 .bars {
   height: calc(100vh - var(--appBarHeightXs));
 }
