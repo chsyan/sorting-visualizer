@@ -5,11 +5,15 @@ import {
 } from "./algorithms/quick-sort";
 import useStore from "./store";
 import { bogoSort, bogoSortOptimized } from "./algorithms/bogo-sort";
+import insertionSort from "./algorithms/insertion-sort";
+import selectionSort from "./algorithms/selection-sort";
 
 export const algorithms = new Map([
   ["Quick Sort (Hoare Partition)", quickSortHoareWrapper],
   ["Quick Sort (Lomuto Partition)", quickSortLomutoWrapper],
   ["Bubble Sort", bubbleSort],
+  ["Insertion Sort", insertionSort],
+  ["Selection Sort", selectionSort],
   ["Bogo Sort", bogoSort],
   ['Bogo Sort ("Optimized")', bogoSortOptimized],
 ]);
@@ -39,15 +43,6 @@ export const isSorted = (array: number[]) => {
     }
   }
   return true;
-};
-
-export const sortedTo = (array: number[]): number => {
-  for (let i = 0; i < array.length; i++) {
-    if ((array[i] as number) != i + 1) {
-      return i;
-    }
-  }
-  return array.length;
 };
 
 export const accessArray = (

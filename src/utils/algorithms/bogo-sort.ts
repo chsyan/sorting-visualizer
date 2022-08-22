@@ -1,4 +1,4 @@
-import { accessArray, isSorted, shuffle, sortedTo } from "../array";
+import { accessArray, isSorted, shuffle } from "../array";
 
 export const bogoSort = (
   array: number[],
