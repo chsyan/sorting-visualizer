@@ -10,6 +10,7 @@ import selectionSort from "./algorithms/selection-sort";
 import mergeSort from "./algorithms/merge-sort";
 import heapSort from "./algorithms/heap-sort";
 import shellSort from "./algorithms/shell-sort";
+import cocktailShakerSort from "./algorithms/cocktail-shaker-sort";
 
 export const algorithms = new Map([
   ["Quick Sort (Hoare Partition)", quickSortHoareWrapper],
@@ -20,6 +21,7 @@ export const algorithms = new Map([
   ["Merge Sort", mergeSort],
   ["Heap Sort", heapSort],
   ["Shell Sort", shellSort],
+  ["Cocktail Shaker Sort", cocktailShakerSort],
   ["Bogo Sort", bogoSort],
   ['Bogo Sort ("Optimized")', bogoSortOptimized],
 ]);

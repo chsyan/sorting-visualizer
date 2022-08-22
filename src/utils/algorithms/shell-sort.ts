@@ -1,4 +1,4 @@
-import { accessArray, swap } from "../array";
+import { accessArray } from "../array";
 
 // All elements after the last swap are sorted, no need to perform useless checks and swaps
 const shellSort = (
