@@ -33,6 +33,9 @@ const AlgorithmSelector = () => {
           value={algorithm}
           label="Algorithm"
           onChange={handleAlgorithm}
+          MenuProps={{
+            PaperProps: { sx: { maxHeight: 400 } }
+          }}
         >
           {
             algorithmNames.map((algorithm) => (

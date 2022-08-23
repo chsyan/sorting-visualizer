@@ -42,7 +42,7 @@ const darkTheme = createTheme({
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
     <ThemeProvider theme={darkTheme}>
-      <CssBaseline />
+      <CssBaseline enableColorScheme />
       <Component {...pageProps} />
     </ThemeProvider>
   )
