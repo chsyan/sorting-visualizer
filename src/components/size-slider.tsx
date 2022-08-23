@@ -14,12 +14,6 @@ const SizeSlider = () => {
     if (typeof size === 'number' && size !== useStore.getState().size) {
       useStore.getState().setSize(size);
     }
-
-    if (useStore.getState().algorithm === "Bogo Sort" && useStore.getState().size > 8) {
-      useStore.setState({
-        isAlertBogo: true,
-      })
-    }
   };
 
   const labelFormat = (value: number) => {

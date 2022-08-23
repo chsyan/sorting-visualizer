@@ -4,7 +4,11 @@ import {
   quickSortLomutoWrapper,
 } from "./algorithms/quick-sort";
 import useStore from "./store";
-import { bogoSort, bogoSortOptimized } from "./algorithms/bogo-sort";
+import {
+  bogoSort,
+  bogoSortOptimized,
+  quantumBogoSort,
+} from "./algorithms/bogo-sort";
 import insertionSort from "./algorithms/insertion-sort";
 import selectionSort from "./algorithms/selection-sort";
 import mergeSort from "./algorithms/merge-sort";
@@ -32,6 +36,7 @@ export const algorithms = new Map([
   ["Cycle Sort", cycleSort],
   ["Bogo Sort", bogoSort],
   ['Bogo Sort ("Optimized")', bogoSortOptimized],
+  ["Quantum Bogo Sort", quantumBogoSort],
 ]);
 
 export const sort = () => {

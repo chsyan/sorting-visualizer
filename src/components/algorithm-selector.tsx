@@ -16,7 +16,7 @@ const AlgorithmSelector = () => {
       useStore.getState().setSize(0);
     }
     useStore.setState({ algorithm: algorithm });
-    if (algorithm === "Bogo Sort" && useStore.getState().size > 8) {
+    if (algorithm === "Bogo Sort") {
       useStore.setState({
         isAlertBogo: true,
       })

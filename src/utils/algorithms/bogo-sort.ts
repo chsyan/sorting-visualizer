@@ -1,4 +1,5 @@
 import { accessArray, isSorted, shuffle } from "../array";
+import useStore from "../store";
 
 export const bogoSort = (
   array: number[],
@@ -10,7 +11,7 @@ export const bogoSort = (
     indicies.push(i);
   }
   while (!isSorted(array)) {
-    array = shuffle(array);
+    shuffle(array);
     accessArray([...array], [...states], animation, indicies, 1);
   }
 };
@@ -41,5 +42,23 @@ export const bogoSortOptimized = (
     if (i === length) {
       index++;
     }
+  }
+};
+
+export const quantumBogoSort = (
+  array: number[],
+  states: number[],
+  animation: [[number[], number[]]]
+) => {
+  const indicies: number[] = [];
+  for (let i = 0; i < array.length; i++) {
+    indicies.push(i);
+  }
+  shuffle(array);
+  accessArray([...array], [...states], animation, indicies, 1);
+  if (!isSorted(array)) {
+    useStore.setState({
+      isExplode: true,
+    });
   }
 };

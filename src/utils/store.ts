@@ -16,6 +16,8 @@ interface State {
   algorithm: string;
   isProgressSlider: boolean;
   isAlertBogo: boolean;
+  isExplode: boolean; // Die when quantum bogo sort fails
+  isWindow: boolean;
 }
 
 const initialSize = 100;
@@ -70,6 +72,8 @@ const useStore = create<State>()((set, get) => ({
   },
   isProgressSlider: false,
   isAlertBogo: false,
+  isExplode: false,
+  isWindow: true,
 }));
 
 export default useStore;
