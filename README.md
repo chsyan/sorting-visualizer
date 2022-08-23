@@ -7,6 +7,17 @@ There is an older version of this project at https://github.com/chsyan/compariso
   - [Lomuto Partition Scheme](https://en.wikipedia.org/wiki/Quicksort#Lomuto_partition_scheme)
   - [Hoare Partition Scheme](https://en.wikipedia.org/wiki/Quicksort#Hoare_partition_scheme)
 - [Bubble Sort](https://en.wikipedia.org/wiki/Bubble_sort)
+- [Comb Sort](https://en.wikipedia.org/wiki/Comb_sort)
+- [Insertion Sort](https://en.wikipedia.org/wiki/Insertion_sort)
+- [Shell Sort](https://en.wikipedia.org/wiki/Shellsort)
+- [Selection Sort](https://en.wikipedia.org/wiki/Selection_sort)
+- [Merge Sort](https://en.wikipedia.org/wiki/Merge_sort)
+- [Heap Sort](https://en.wikipedia.org/wiki/Heapsort)
+- [Cocktail Shaker Sort](https://en.wikipedia.org/wiki/Cocktail_shaker_sort)
+- [Gnome Sort](https://en.wikipedia.org/wiki/Gnome_sort)
+- [Odd-Even Sort](https://en.wikipedia.org/wiki/Odd%E2%80%93even_sort)
+- [Cycle Sort](https://en.wikipedia.org/wiki/Cycle_sort)
+- [Bogo Sort](https://en.wikipedia.org/wiki/Bogosort)
 
 ## Building
 The project can be cloned using git
