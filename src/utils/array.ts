@@ -19,6 +19,10 @@ import gnomeSort from "./algorithms/gnome-sort";
 import oddEvenSort from "./algorithms/odd-even-sort";
 import combSort from "./algorithms/comb-sort";
 import cycleSort from "./algorithms/cycle-sort";
+import {
+  radixMSDSort,
+  radixTwoPassSort as radixTwoPassSort,
+} from "./algorithms/radix-sort";
 
 export const algorithms = new Map([
   ["Quick Sort (Hoare Partition)", quickSortHoareWrapper],
@@ -34,6 +38,7 @@ export const algorithms = new Map([
   ["Gnome Sort", gnomeSort],
   ["Odd-Even Sort", oddEvenSort],
   ["Cycle Sort", cycleSort],
+  ["Radix Two Pass Sort", radixTwoPassSort],
   ["Bogo Sort", bogoSort],
   ['Bogo Sort ("Optimized")', bogoSortOptimized],
   ["Quantum Bogo Sort", quantumBogoSort],
@@ -73,11 +78,12 @@ export const accessArray = (
   indices: number[],
   state: number
 ) => {
+  const s = [...states];
   for (let i = 0; i < indices.length; i++) {
     const index = indices[i] as number;
-    states[index] = state;
+    s[index] = state;
   }
-  animation.push([[...array], [...states]]);
+  animation.push([[...array], [...s]]);
 };
 
 export const randomArray = (length: number): number[] => {
