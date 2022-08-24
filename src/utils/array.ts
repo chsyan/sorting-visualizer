@@ -1,28 +1,25 @@
-import bubbleSort from "./algorithms/bubble-sort";
-import {
-  quickSortHoareWrapper,
-  quickSortLomutoWrapper,
-} from "./algorithms/quick-sort";
-import useStore from "./store";
 import {
   bogoSort,
   bogoSortOptimized,
-  quantumBogoSort,
+  quantumBogoSort
 } from "./algorithms/bogo-sort";
-import insertionSort from "./algorithms/insertion-sort";
-import selectionSort from "./algorithms/selection-sort";
-import mergeSort from "./algorithms/merge-sort";
-import heapSort from "./algorithms/heap-sort";
-import shellSort from "./algorithms/shell-sort";
+import bubbleSort from "./algorithms/bubble-sort";
 import cocktailShakerSort from "./algorithms/cocktail-shaker-sort";
-import gnomeSort from "./algorithms/gnome-sort";
-import oddEvenSort from "./algorithms/odd-even-sort";
 import combSort from "./algorithms/comb-sort";
 import cycleSort from "./algorithms/cycle-sort";
+import gnomeSort from "./algorithms/gnome-sort";
+import heapSort from "./algorithms/heap-sort";
+import insertionSort from "./algorithms/insertion-sort";
+import mergeSort from "./algorithms/merge-sort";
+import oddEvenSort from "./algorithms/odd-even-sort";
 import {
-  radixMSDSort,
-  radixTwoPassSort as radixTwoPassSort,
-} from "./algorithms/radix-sort";
+  quickSortHoareWrapper,
+  quickSortLomutoWrapper
+} from "./algorithms/quick-sort";
+import { radixTwoPassSort } from "./algorithms/radix-sort";
+import selectionSort from "./algorithms/selection-sort";
+import shellSort from "./algorithms/shell-sort";
+import useStore from "./store";
 
 export const algorithms = new Map([
   ["Quick Sort (Hoare Partition)", quickSortHoareWrapper],
