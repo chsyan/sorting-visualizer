@@ -12,6 +12,7 @@ import heapSort from "./algorithms/heap-sort";
 import insertionSort from "./algorithms/insertion-sort";
 import mergeSort from "./algorithms/merge-sort";
 import oddEvenSort from "./algorithms/odd-even-sort";
+import pancakeSort from "./algorithms/pancake-sort";
 import {
   quickSortHoareWrapper,
   quickSortLomutoWrapper
@@ -36,6 +37,7 @@ export const algorithms = new Map([
   ["Odd-Even Sort", oddEvenSort],
   ["Cycle Sort", cycleSort],
   ["Radix Two Pass Sort", radixTwoPassSort],
+  ["Pancake Sort", pancakeSort],
   ["Bogo Sort", bogoSort],
   ['Bogo Sort ("Optimized")', bogoSortOptimized],
   ["Quantum Bogo Sort", quantumBogoSort],
